@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: demo-django-app
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn core.wsgi:application"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: core.settings
+      - key: DJANGO_ENV
+        value: production
+    staticPublishPath: staticfiles
+    plan: free
+
+databases:
+  - name: demo-db
+    plan: free
+    databaseName: demo_6uxp
+    user: admin
